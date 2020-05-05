@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import CalendarHeatmap from 'react-calendar-heatmap'; 
+import 'react-calendar-heatmap/dist/styles.css'; 
+
 
 function Todo({todo, index, completeTodo}) {
   return (
@@ -37,23 +40,35 @@ function TodoForm({addTodo}) {
 }
 function App() {
   const [todos, setTodos] = React.useState([
+    {count: 0},
     {text: "Learn about React", 
     isCompleted: false}, 
     {text: "Meet friend for lunch",
     isCompleted: false}, 
     {text: "Build a really cool todo app",
-    isCompleted: false}
+    isCompleted: false},
   ]);
 
   const addTodo = text => {
     const newTodos = [...todos, {text}]; 
+    console.log(newTodos)
     setTodos(newTodos); 
   };
 
   const completeTodo = index => {
     const newTodos = [...todos]; 
-    newTodos[index].isCompleted = true; 
+    newTodos[index].isCompleted = true;
+    console.log(newTodos[0].count += 1)
     setTodos(newTodos); 
+    console.log("This is the new todo's count"); 
+    console.log(newTodos[newTodos.length-1].count)
+    if (newTodos[0].count === newTodos.length-1){
+      console.log("YOU ARE DONE FOR DA DAY MY G")
+      // Add a mark to the calendar for today
+      // Fam
+
+    }
+    
   };
 
   return (
@@ -69,7 +84,20 @@ function App() {
         ))}
         <TodoForm addTodo={addTodo}/>
       </div>
+      <div>
 
+          <CalendarHeatmap
+          startDate={new Date('2016-01-01')}
+          endDate={new Date('2016-04-01')}
+          values={[
+            { date: '2016-01-01', count: 12 },
+            { date: '2016-01-05', count: 3}, 
+            { date: '2016-01-22', count: 0 },
+            { date: '2016-01-30', count: 38 },
+            // ...and so on
+          ]}
+        />
+      </div>
     </div>
   );
 }
