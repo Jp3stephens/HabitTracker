@@ -75,6 +75,17 @@ function App() {
     
   };
 
+
+  const holaYo = (value) => {
+    if (!value){ 
+      alert("YOU DIDN'T DO SHIT THAT DAY FAM")
+    }
+    else {
+      alert("YOU DID SOME SHIT THAT DAY FAM")
+
+    }
+    
+  }
   return (
     <div className="app">
       <div className="todo-list">
@@ -100,6 +111,7 @@ function App() {
             { date: '2016-01-30', count: 38 },
             // ...and so on
           ]}
+          onClick = {(value)=> holaYo(value)}
         />
       </div>
     </div>
