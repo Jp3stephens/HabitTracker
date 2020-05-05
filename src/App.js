@@ -57,11 +57,15 @@ function App() {
 
   const completeTodo = index => {
     const newTodos = [...todos]; 
-    newTodos[index].isCompleted = true;
-    console.log(newTodos[0].count += 1)
+    if (newTodos[index+1].isCompleted == true){
+      return 
+    }
+    newTodos[index+1].isCompleted = true;
     setTodos(newTodos); 
+    console.log(newTodos[0].count += 1)
+    
     console.log("This is the new todo's count"); 
-    console.log(newTodos[newTodos.length-1].count)
+    console.log(newTodos[0].count)
     if (newTodos[0].count === newTodos.length-1){
       console.log("YOU ARE DONE FOR DA DAY MY G")
       // Add a mark to the calendar for today
@@ -74,7 +78,7 @@ function App() {
   return (
     <div className="app">
       <div className="todo-list">
-        {todos.map((todo, index)=> (
+        {todos.slice(1).map((todo, index)=> (
           <Todo 
             key={index}
             index={index}
